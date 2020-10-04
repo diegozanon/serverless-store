@@ -10,18 +10,15 @@ class Header extends Component {
         this.state = {
             showModal: false
         };
-
-        this.closeModal = this.closeModal.bind(this);
-        this.openModal = this.openModal.bind(this);
     }
 
-    closeModal() {
+    closeModal = () => {
         this.setState({ showModal: false });
         this.props.onReadNotification();
     }
 
-    openModal() {
-        this.setState({ showModal: true });        
+    openModal = () => {
+        this.setState({ showModal: true });
     }
 
     render() {
@@ -45,28 +42,28 @@ class Header extends Component {
                     {
                         this.props.isLoggedIn
                             ?
-                                <Nav pullRight>
-                                    <NavItem onClick={this.props.onLogout}>
-                                        Logout
+                            <Nav pullRight>
+                                <NavItem onClick={this.props.onLogout}>
+                                    Logout
                                     </NavItem>
-                                    <NavItem id="notification" onClick={() => this.openModal()}>
-                                        <div className={this.props.hasNotifications ? "new-notification" : ""}>
-                                            <span className="glyphicon glyphicon-bell"></span>
-                                        </div>
-                                    </NavItem>
-                                </Nav>
-                            :
-                                <Nav pullRight>
-                                    <LinkContainer to="/signup">
-                                        <NavItem>Signup</NavItem>
-                                    </LinkContainer>
-                                    <LinkContainer to="/login">
-                                        <NavItem>Login</NavItem>
-                                    </LinkContainer>
-                                    <NavItem id="notification" onClick={() => this.openModal()}>
+                                <NavItem id="notification" onClick={() => this.openModal()}>
+                                    <div className={this.props.hasNotifications ? "new-notification" : ""}>
                                         <span className="glyphicon glyphicon-bell"></span>
-                                    </NavItem>
-                                </Nav>
+                                    </div>
+                                </NavItem>
+                            </Nav>
+                            :
+                            <Nav pullRight>
+                                <LinkContainer to="/signup">
+                                    <NavItem>Signup</NavItem>
+                                </LinkContainer>
+                                <LinkContainer to="/login">
+                                    <NavItem>Login</NavItem>
+                                </LinkContainer>
+                                <NavItem id="notification" onClick={() => this.openModal()}>
+                                    <span className="glyphicon glyphicon-bell"></span>
+                                </NavItem>
+                            </Nav>
                     }
                     <Modal show={this.state.showModal} onHide={this.closeModal}>
                         <Modal.Header closeButton>

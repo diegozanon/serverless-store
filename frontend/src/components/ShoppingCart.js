@@ -9,43 +9,40 @@ class ShoppingCart extends Component {
         this.state = {
             modalMessage: {}
         };
-
-        this.save = this.save.bind(this);
-        this.checkout = this.checkout.bind(this);
     }
 
     getTotal() {
         return this.props
-                   .selectedProducts
-                   .map(p => p.price)
-                   .reduce((a, b) => a + b, 0);
+            .selectedProducts
+            .map(p => p.price)
+            .reduce((a, b) => a + b, 0);
     }
 
-    save() {
+    save = () => {
         const modalMessage = {
             title: "Your cart was saved",
             body: "You can see your saved items in your next login."
         };
 
         this.props.onSave();
-        this.setState({modalMessage: modalMessage});
+        this.setState({ modalMessage: modalMessage });
     }
 
-    checkout() {
+    checkout = () => {
         const modalMessage = {
             title: "Your order has been sent",
             body: "However, this is a demo and you will not receive anything 😢"
         };
-        
+
         this.props.onCheckout();
-        this.setState({modalMessage: modalMessage});
+        this.setState({ modalMessage: modalMessage });
     }
 
     render() {
         const onDeselect = this.props.onDeselect;
         const products = this.props.selectedProducts.map(product => {
             return (
-                <ShoppingCartItem 
+                <ShoppingCartItem
                     key={product.id}
                     product={product}
                     onDeselect={onDeselect} />
@@ -62,11 +59,11 @@ class ShoppingCart extends Component {
                         {products.length > 0 ? products : empty}
                         <div>Total: US$ {this.getTotal()}</div>
                         <button className="btn btn-primary shopping-button"
-                            onClick={() => {this.save();}}>
+                            onClick={() => { this.save(); }}>
                             Save
                         </button>
                         <button className="btn btn-primary shopping-button"
-                            onClick={() => {this.checkout();}}>
+                            onClick={() => { this.checkout(); }}>
                             Checkout
                         </button>
                     </div>

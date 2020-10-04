@@ -38,9 +38,9 @@ class Services {
         });
 
         const attributeEmail = [
-            new CognitoUserAttribute({ 
-                Name: 'email', 
-                Value: email 
+            new CognitoUserAttribute({
+                Name: 'email',
+                Value: email
             })
         ];
 
@@ -57,9 +57,9 @@ class Services {
             ClientId: config.cognito.APP_CLIENT_ID
         });
 
-        const user = new CognitoUser({ 
-            Username: email, 
-            Pool: userPool 
+        const user = new CognitoUser({
+            Username: email,
+            Pool: userPool
         });
 
         const authenticationData = {
@@ -203,7 +203,7 @@ const axiosRequest = (method, url, data, userToken, callback) => {
         })
         .catch(error => {
             console.log(error);
-            callback('You need to be logged in to access this feature.');
+            callback('You need to be logged in to access this feature.'); // or config.js was not configured
         });
 }
 

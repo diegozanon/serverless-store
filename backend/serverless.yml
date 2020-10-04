@@ -11,7 +11,7 @@ provider:
   memorySize: 128
   timeout: 30
   environment:
-    IOT_ENDPOINT: abcdefghijklm.iot.us-east-1.amazonaws.com
+    IOT_ENDPOINT: abcdefghijklm-ats.iot.us-east-1.amazonaws.com
   iamRoleStatements:
     - Effect: "Allow"
       Action:

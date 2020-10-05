@@ -14,13 +14,13 @@ module.exports.retrieveAllProducts = (callback) => {
     const products = [{
         id: "lonely-bird",
         name: "Lonely Bird",
-        image: 'https://s3.amazonaws.com/serverless-store-media/product-images/lonely-bird.jpg',
+        image: 'https://raw.githubusercontent.com/diegozanon/serverless-store/master/scripts/product-images/lonely-bird.jpg',
         price: 29.99,
         comments: comments
     }, {
         id: "solid-friendship",
         name: "Solid Friendship",
-        image: 'https://s3.amazonaws.com/serverless-store-media/product-images/solid-friendship.jpg',
+        image: 'https://raw.githubusercontent.com/diegozanon/serverless-store/master/scripts/product-images/solid-friendship.jpg',
         price: 19.99,
         comments: comments
     }];
@@ -32,7 +32,7 @@ module.exports.retrieveCart = (userId, callback) => {
 
     const selectedProducts = [{
         id: "lonely-bird"
-    }];  
+    }];
 
     callback(null, selectedProducts);
 };

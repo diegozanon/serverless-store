@@ -17,17 +17,17 @@ const productsTable = {
         {
             AttributeName: 'ID',
             KeyType: 'HASH'
-        }   
+        }
     ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 5, // default value
         WriteCapacityUnits: 5 // default value
-    } 
+    }
 };
 
 const insertProducts = () => {
-    
-    const s3Bucket = 'https://s3.amazonaws.com/serverless-store-media/product-images/';
+
+    const baseUrl = 'https://raw.githubusercontent.com/diegozanon/serverless-store/master/scripts/product-images/';
 
     const generateComment = () => {
         const id1 = uuidv4();
@@ -62,7 +62,7 @@ const insertProducts = () => {
                             ID: 'lonely-bird',
                             Name: 'Lonely Bird',
                             Price: 29.99,
-                            Image: s3Bucket + 'lonely-bird.jpg',
+                            Image: baseUrl + 'lonely-bird.jpg',
                             Comments: comments[0]
                         }
                     }
@@ -73,7 +73,7 @@ const insertProducts = () => {
                             ID: 'solid-friendship',
                             Name: 'Solid Friendship',
                             Price: 19.99,
-                            Image: s3Bucket + 'solid-friendship.jpg',
+                            Image: baseUrl + 'solid-friendship.jpg',
                             Comments: comments[1]
                         }
                     }
@@ -84,7 +84,7 @@ const insertProducts = () => {
                             ID: 'thanksgiving',
                             Name: 'Thanksgiving',
                             Price: 39.99,
-                            Image: s3Bucket + 'thanksgiving.jpg',
+                            Image: baseUrl + 'thanksgiving.jpg',
                             Comments: comments[2]
                         }
                     }
@@ -95,7 +95,7 @@ const insertProducts = () => {
                             ID: 'old-man',
                             Name: 'Old Man',
                             Price: 19.99,
-                            Image: s3Bucket + 'old-man.jpg',
+                            Image: baseUrl + 'old-man.jpg',
                             Comments: comments[3]
                         }
                     }
@@ -106,7 +106,7 @@ const insertProducts = () => {
                             ID: 'lait-cow',
                             Name: 'Lait Cow',
                             Price: 59.99,
-                            Image: s3Bucket + 'lait-cow.jpg',
+                            Image: baseUrl + 'lait-cow.jpg',
                             Comments: comments[4]
                         }
                     }
@@ -117,7 +117,7 @@ const insertProducts = () => {
                             ID: 'chicken',
                             Name: 'Chicken',
                             Price: 29.99,
-                            Image: s3Bucket + 'chicken.jpg',
+                            Image: baseUrl + 'chicken.jpg',
                             Comments: comments[5]
                         }
                     }
@@ -128,7 +128,7 @@ const insertProducts = () => {
                             ID: 'hare',
                             Name: 'Hare',
                             Price: 49.99,
-                            Image: s3Bucket + 'hare.jpg',
+                            Image: baseUrl + 'hare.jpg',
                             Comments: comments[6]
                         }
                     }
@@ -139,7 +139,7 @@ const insertProducts = () => {
                             ID: 'fall',
                             Name: 'Fall',
                             Price: 19.99,
-                            Image: s3Bucket + 'fall.jpg',
+                            Image: baseUrl + 'fall.jpg',
                             Comments: comments[7]
                         }
                     }
@@ -150,15 +150,15 @@ const insertProducts = () => {
                             ID: 'gardener',
                             Name: 'Gardener',
                             Price: 39.99,
-                            Image: s3Bucket + 'gardener.jpg',
+                            Image: baseUrl + 'gardener.jpg',
                             Comments: comments[8]
                         }
                     }
-                }                                                                                                                                
+                }
             ]
         }
     };
-    
+
     documentClient.batchWrite(insertParams, (err, data) => {
         if (err) console.log(err, err.stack);
         else console.log(data);
@@ -174,8 +174,8 @@ dynamodb.createTable(productsTable, (err, data) => {
 
     dynamodb.waitFor('tableExists', params, (err, data) => {
         if (err) console.log(err, err.stack);
-        else     insertProducts();
-    });    
+        else insertProducts();
+    });
 });
 
 const cartTable = {
@@ -190,12 +190,12 @@ const cartTable = {
         {
             AttributeName: 'UserID',
             KeyType: 'HASH'
-        }   
+        }
     ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 5, // default value
         WriteCapacityUnits: 5 // default value
-    } 
+    }
 };
 
 dynamodb.createTable(cartTable, (err, data) => {

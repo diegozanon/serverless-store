@@ -5,7 +5,7 @@
     "dependencies": {
         "amazon-cognito-identity-js": "^1.19.0",
         "aws-iot-device-sdk": "^2.0.0",
-        "aws-sdk": "^2.77.0",
+        "aws-sdk": "^2.814.0",
         "axios": "^0.21.1",
         "react": "^15.5.4",
         "react-bootstrap": "^0.31.0",
